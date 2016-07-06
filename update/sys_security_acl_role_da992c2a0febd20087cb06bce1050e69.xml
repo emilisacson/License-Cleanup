@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-05-25 10:46:42</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>da992c2a0febd20087cb06bce1050e69</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_10980_license_cl_cleanup_job_run_results.license_cleanup_user</sys_name>
+        <sys_package display_value="License Cleanup" source="x_10980_license_cl">7aa5a3c60fa7d20087cb06bce1050eca</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="License Cleanup">7aa5a3c60fa7d20087cb06bce1050eca</sys_scope>
+        <sys_security_acl display_value="x_10980_license_cl_cleanup_job_run_results">9e992c2a0febd20087cb06bce1050e68</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_da992c2a0febd20087cb06bce1050e69</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-05-25 10:46:42</sys_updated_on>
+        <sys_user_role display_value="license_cleanup_user" name="license_cleanup_user">e02afb1a0fabd20087cb06bce1050ed7</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

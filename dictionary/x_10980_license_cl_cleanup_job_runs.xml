@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Cleanup job runs" max_length="40" name="x_10980_license_cl_cleanup_job_runs" type="collection">
+        <element default="60" label="Allowed days" mandatory="true" max_length="40" name="allowed_days" type="integer"/>
+        <element default="30" label="Allowed days warning" mandatory="true" max_length="40" name="allowed_days_warning" type="integer"/>
+        <element label="Cleanup job run" mandatory="true" max_length="32" name="cleanup_job_run" reference="x_10980_license_cl_cleanup_jobs" type="reference"/>
+        <element default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element default="0" label="User limit" mandatory="true" max_length="40" name="user_limit" type="integer"/>
+        <index name="index">
+            <element name="cleanup_job_run"/>
+        </index>
+    </element>
+</database>

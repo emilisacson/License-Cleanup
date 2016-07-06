@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl/>
+        <http_method>GET</http_method>
+        <name>getCleanupJobs</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	//array of job objects we'll return to the app
+	var jobArr = [];
+	//query the job table for all  jobs
+	var job = new GlideRecord('x_10980_license_cl_cleanup_jobs');
+	//job.addQuery('active', true);
+	job.orderBy('number');
+	job.query();
+	//iterate through the jobs
+	while (job.next()) {
+		//populate a job object for our job
+		var lastRun = "Never";
+		if(job.last_run != "")
+			lastRun = job.last_run;
+		
+		var usersToSkip = new GlideRecord('x_10980_license_cl_users_to_skip');
+		usersToSkip.addQuery('cleanup_job', job.sys_id);
+		usersToSkip.query();
+		
+		var usersToSkipArr = [];
+		var userToSkip;
+		while (usersToSkip.next()) {
+			userToSkip = {
+				'user_to_skip' : usersToSkip.user_to_skip.user_name + ''
+			};
+			usersToSkipArr.push(userToSkip);
+		}
+		
+		var affectedCompanies = new GlideRecord('x_10980_license_cl_affected_companies');
+		affectedCompanies.addQuery('cleanup_job', job.sys_id);
+		affectedCompanies.query();
+		
+		var affectedCompaniesArr = [];
+		var affectedCompany;
+		while (affectedCompanies.next()) {
+			affectedCompany = {
+				'affected_company' : affectedCompanies.affected_company.name + ''
+			};
+			affectedCompaniesArr.push(affectedCompany);
+		}
+		
+		var jobObj = {
+			'sys_id': job.sys_id + '',
+			'number': job.number + '',
+			'name': job.name + '',
+			'active': job.active + '',
+			'allowed_days': Number(job.allowed_days),
+			'allowed_days_warning': Number(job.allowed_days_warning),
+			'user_limit': Number(job.user_limit),
+			'last_run': lastRun,
+			'users_to_skip' : usersToSkipArr,
+			'affected_companies' : affectedCompaniesArr
+		};
+
+		//push the job object for this job to the app
+		jobArr.push(jobObj);
+	}
+	//add the array to the response
+	response.setBody(jobArr);
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_10980_license_cl/load_cleanup_jobs/getCleanupJobs</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/getCleanupJobs</relative_path>
+        <request_example/>
+        <requires_acl_authorization>false</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-06-01 11:32:41</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>71b534740fbf560087cb06bce1050e11</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>getCleanupJobs</sys_name>
+        <sys_package display_value="License Cleanup" source="x_10980_license_cl">7aa5a3c60fa7d20087cb06bce1050eca</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="License Cleanup">7aa5a3c60fa7d20087cb06bce1050eca</sys_scope>
+        <sys_update_name>sys_ws_operation_71b534740fbf560087cb06bce1050e11</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-06-07 14:40:39</sys_updated_on>
+        <web_service_definition display_value="Load Cleanup Jobs">618574740fbf560087cb06bce1050e31</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

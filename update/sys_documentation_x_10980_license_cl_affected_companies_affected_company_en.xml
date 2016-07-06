@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="affected_company" label="Affected company" language="en" table="x_10980_license_cl_affected_companies">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>affected_company</element>
+            <help/>
+            <hint/>
+            <label>Affected company</label>
+            <language>en</language>
+            <name>x_10980_license_cl_affected_companies</name>
+            <plural>Affected companies</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:26:35</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>5d7081220f2fd20087cb06bce1050e7d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Affected company</sys_name>
+            <sys_package display_value="License Cleanup" source="x_10980_license_cl">7aa5a3c60fa7d20087cb06bce1050eca</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="License Cleanup">7aa5a3c60fa7d20087cb06bce1050eca</sys_scope>
+            <sys_update_name>sys_documentation_x_10980_license_cl_affected_companies_affected_company_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:26:35</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Affected companies" max_length="40" name="x_10980_license_cl_affected_companies" type="collection">
+        <element label="Affected company" mandatory="true" max_length="32" name="affected_company" reference="core_company" type="reference"/>
+        <element label="Cleanup job" mandatory="true" max_length="32" name="cleanup_job" reference="x_10980_license_cl_cleanup_jobs" type="reference"/>
+        <index name="index">
+            <element name="affected_company"/>
+        </index>
+        <index name="index2">
+            <element name="cleanup_job"/>
+        </index>
+    </element>
+</database>

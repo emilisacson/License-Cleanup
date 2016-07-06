@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_section caption="" section_id="950541a20f2fd20087cb06bce1050ef2" sys_domain="global" table="x_10980_license_cl_affected_companies" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:46:30</sys_created_on>
+            <sys_id>9d0541a20f2fd20087cb06bce1050ef2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_10980_license_cl_affected_companies" sys_domain="global" view="Default view">950541a20f2fd20087cb06bce1050ef2</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:46:30</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>cleanup_job</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:46:30</sys_created_on>
+            <sys_id>110541a20f2fd20087cb06bce1050ef3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_10980_license_cl_affected_companies" sys_domain="global" view="Default view">950541a20f2fd20087cb06bce1050ef2</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:46:30</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:46:30</sys_created_on>
+            <sys_id>910541a20f2fd20087cb06bce1050ef3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_10980_license_cl_affected_companies" sys_domain="global" view="Default view">950541a20f2fd20087cb06bce1050ef2</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:46:30</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>affected_company</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:46:30</sys_created_on>
+            <sys_id>150541a20f2fd20087cb06bce1050ef3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_10980_license_cl_affected_companies" sys_domain="global" view="Default view">950541a20f2fd20087cb06bce1050ef2</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:46:30</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:46:30</sys_created_on>
+            <sys_id>950541a20f2fd20087cb06bce1050ef3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_10980_license_cl_affected_companies" sys_domain="global" view="Default view">950541a20f2fd20087cb06bce1050ef2</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:46:30</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_10980_license_cl_affected_companies</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:46:30</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>950541a20f2fd20087cb06bce1050ef2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_10980_license_cl_affected_companies</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="License Cleanup" source="x_10980_license_cl">7aa5a3c60fa7d20087cb06bce1050eca</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="License Cleanup">7aa5a3c60fa7d20087cb06bce1050eca</sys_scope>
+            <sys_update_name>sys_ui_section_950541a20f2fd20087cb06bce1050ef2</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:46:30</sys_updated_on>
+            <sys_user/>
+            <title>true</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

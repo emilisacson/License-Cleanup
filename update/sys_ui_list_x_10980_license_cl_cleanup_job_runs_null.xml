@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_10980_license_cl_cleanup_job_runs" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>number</element>
+            <list_id display_value="x_10980_license_cl_cleanup_job_runs" element="NULL" name="x_10980_license_cl_cleanup_job_runs" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e80489620f2fd20087cb06bce1050e9d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:42:06</sys_created_on>
+            <sys_id>200489620f2fd20087cb06bce1050e9e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:42:06</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>allowed_days</element>
+            <list_id display_value="x_10980_license_cl_cleanup_job_runs" element="NULL" name="x_10980_license_cl_cleanup_job_runs" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e80489620f2fd20087cb06bce1050e9d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:42:06</sys_created_on>
+            <sys_id>a00489620f2fd20087cb06bce1050e9e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:42:06</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>allowed_days_warning</element>
+            <list_id display_value="x_10980_license_cl_cleanup_job_runs" element="NULL" name="x_10980_license_cl_cleanup_job_runs" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e80489620f2fd20087cb06bce1050e9d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:42:06</sys_created_on>
+            <sys_id>240489620f2fd20087cb06bce1050e9e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:42:06</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>cleanup_job_run</element>
+            <list_id display_value="x_10980_license_cl_cleanup_job_runs" element="NULL" name="x_10980_license_cl_cleanup_job_runs" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e80489620f2fd20087cb06bce1050e9d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:42:06</sys_created_on>
+            <sys_id>a40489620f2fd20087cb06bce1050e9e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:42:06</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>user_limit</element>
+            <list_id display_value="x_10980_license_cl_cleanup_job_runs" element="NULL" name="x_10980_license_cl_cleanup_job_runs" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e80489620f2fd20087cb06bce1050e9d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:42:06</sys_created_on>
+            <sys_id>280489620f2fd20087cb06bce1050e9e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:42:06</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_10980_license_cl_cleanup_job_runs</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2016-05-25 12:42:06</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>e80489620f2fd20087cb06bce1050e9d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_10980_license_cl_cleanup_job_runs</sys_name>
+            <sys_package display_value="License Cleanup" source="x_10980_license_cl">7aa5a3c60fa7d20087cb06bce1050eca</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="License Cleanup">7aa5a3c60fa7d20087cb06bce1050eca</sys_scope>
+            <sys_update_name>sys_ui_list_x_10980_license_cl_cleanup_job_runs_null</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2016-05-25 12:42:06</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

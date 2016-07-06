@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var app = angular.module('lc', ['ui.bootstrap']);
+
+app.controller('LCController', [ '$scope', '$http', function($scope, $http) {
+    
+    $scope.url = '/api/now/table/x_10980_license_cl_cleanup_jobs';
+    $http.defaults.headers.common.Accept = "application/json";
+	$http.defaults.headers.common['X-UserToken'] = window.g_ck;
+	
+	$scope.loadData = function () {
+        $http({
+            method: 'GET',
+            //url: $scope.url + '?sysparm_query=complete=false'
+			url: '/api/x_10980_license_cl/load_cleanup_jobs/getCleanupJobs'
+        }).
+        success(function(data, status) {
+            $scope.jobs = data.result;
+        }).
+        error(function(data, status) {
+            $scope.jobs = [{'number':'Error loading Jobs'}];
+        });
+    };
+	
+	$scope.updateJob = function(idx) {
+        var updatedJob = $scope.jobs[idx];
+        $http({
+            method: 'PATCH',
+            url: $scope.url + '/' + updatedJob.sys_id,
+            headers: {'Content-Type': 'application/json'},
+            data: {'active': updatedJob.active, 'allowed_days': updatedJob.allowed_days, 'allowed_days_warning': updatedJob.allowed_days_warning, 'user_limit': updatedJob.user_limit}
+        }).
+        success(function(data, status, headers, config) {
+
+        });
+    };
+	
+	$scope.hasListItems = function(aList) {
+		if(Object.keys(aList).length > 0) {
+			return true;
+		}
+		
+		return false;
+	};
+	
+	$scope.multipleHasListItems = function(aList, bList) {
+		if(Object.keys(aList).length > 0 || Object.keys(bList).length > 0) {
+			return true;
+		}
+		
+		return false;
+	};
+	
+	$scope.collapseClick = function(idx, collapsingList) {
+		if(collapsingList == "UsersToSkip")
+		{
+			if($scope.hasListItems($scope.jobs[idx].users_to_skip)) {
+				$scope.jobs[idx].isCollapsedUsers = !$scope.jobs[idx].isCollapsedUsers;
+			}
+		}
+		else if(collapsingList == "AffectedCompanies")
+		{
+			if($scope.hasListItems($scope.jobs[idx].affected_companies)) {
+				$scope.jobs[idx].isCollapsedCompanies = !$scope.jobs[idx].isCollapsedCompanies;
+			}
+		}
+		else
+		{
+			if($scope.hasListItems($scope.jobs[idx].affected_companies) || $scope.hasListItems($scope.jobs[idx].users_to_skip)) {
+				$scope.jobs[idx].isCollapsedJob = !$scope.jobs[idx].isCollapsedJob;
+			}
+		}
+	};
+	
+	//intial load
+    $scope.loadData();
+
+}]);
+
+app.directive('focusMe', function($timeout, $parse) {
+    return {
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.focusMe);
+            scope.$watch(model, function(value) {
+                if(value === true) {
+                    $timeout(function() {
+                        element[0].focus();
+                    });
+                }
+            });
+            element.bind('blur', function() {
+                scope.$apply(model.assign(scope, false));
+            });
+        }
+    };
+});]]></client_script>
+        <description/>
+        <direct>true</direct>
+        <endpoint>x_10980_license_cl_license_cleanup.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+	<g:evaluate object="true">
+		var session = gs.getSession();
+		var g_ck = session.getSessionToken();
+	</g:evaluate>
+	<script>
+		window.g_ck = "$[g_ck]";
+	</script>
+	<style>
+		/* Need to override the default ServiceNow style that sets buttons to a fixed height */
+		.input-group-btn button.btn, .input-group-btn input.btn{height:auto !important;}
+		.my-group select.form-control{width:30% !important;}
+		.my-group input.form-control{width:70% !important;}
+		.hiddenRow { padding: 0 !important; }
+		.panel {margin-bottom: auto;}
+		/*.collapse.in { display: table-cell !important; }*/
+	</style>
+	<p></p>
+	<div class="container" ng-app="lc">
+		<div class="col-md-12 col-xs-12" ng-controller="LCController">	
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>License Cleanup Jobs</h4>
+				</div>
+				<div class="panel-body">
+					<table class="table ">
+						<thead>
+							<tr>
+								<th>Active</th>
+								<th>Name</th>
+								<th>Allowed days</th>
+								<th>Allowed days warning</th>
+								<th>User limit</th>
+								<th>Last run</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-if="jobs.length == 0">
+								<td colspan="7" class="list-group-item-danger">No Cleanup Jobs available</td>
+							</tr>
+							<tr ng-repeat-start="job in jobs" ng-init="jobIndex = $index" ng-class="{true:'success', false:'danger'}[job.active]">
+								<td>
+									<div class="btn-group btn-group-lg">
+										<button type="button" class="btn btn-lg" ng-class="{true: 'btn btn-lg btn-success', false: 'btn btn-lg btn-danger'}[job.active]" ng-dblclick="job.active = !job.active; updateJob(jobIndex)">
+											<span class="glyphicon glyphicon-off" aria-hidden="true" />
+										</button>
+									</div>
+								</td>
+								<td title="{{job.number}}">
+									<h4>{{job.name}}</h4>
+								</td>
+								<td>
+									<h4 ng-show="!showAllowedDaysEdit" ng-dblclick="showAllowedDaysEdit = true">{{job.allowed_days}}</h4>
+									<form class="ng-pristine ng-valid" ng-show="showAllowedDaysEdit" ng-submit="updateJob(jobIndex); showAllowedDaysEdit = false">
+										<input focus-me="showAllowedDaysEdit"
+											   ng-blur="updateJob(jobIndex); showAllowedDaysEdit = false"
+											   class="form-control input-lg"
+											   ng-model="job.allowed_days"
+											   type="number"
+											   />
+									</form>
+								</td>
+								<td>
+									<h4 ng-show="!showAllowedDaysWarningEdit" ng-dblclick="showAllowedDaysWarningEdit = true">{{job.allowed_days_warning}}</h4>
+									<form class="ng-pristine ng-valid" ng-show="showAllowedDaysWarningEdit" ng-submit="updateJob(jobIndex); showAllowedDaysWarningEdit = false">
+										<input focus-me="showAllowedDaysWarningEdit"
+											   ng-blur="updateJob(jobIndex); showAllowedDaysWarningEdit = false"
+											   class="form-control input-lg"
+											   ng-model="job.allowed_days_warning"
+											   type="number"
+											   />
+									</form>
+								</td>
+								<td>
+									<h4 ng-show="!showUserLimitEdit" ng-dblclick="showUserLimitEdit = true">{{job.user_limit}}</h4>
+									<form class="ng-pristine ng-valid" ng-show="showUserLimitEdit" ng-submit="updateJob(jobIndex); showUserLimitEdit = false">
+										<input focus-me="showUserLimitEdit"
+											   ng-blur="updateJob(jobIndex); showUserLimitEdit = false"
+											   class="form-control input-lg"
+											   ng-model="job.user_limit"
+											   type="number"
+											   />
+									</form>
+								</td>
+								<td>
+									<h4>{{job.last_run}}</h4>
+								</td>
+								<td>
+									<div class="btn-group-lg btn-group">
+										<button type="button"
+												class="btn btn-lg"
+												ng-class="{true:'btn btn-lg', false:'btn active btn-lg'}[job.isCollapsedJob]"
+												ng-init="job.isCollapsedJob=true"
+												ng-click="collapseClick(jobIndex, '')"
+												ng-disabled="!multipleHasListItems(job.users_to_skip, job.affected_companies)"
+												data-toggle="collapse"
+												data-target="#collapseTD{{jobIndex}},#collapseJobPanel{{jobIndex}}"
+												>
+											<span class="glyphicon" ng-class="{true:'glyphicon glyphicon-chevron-down', false:'glyphicon glyphicon-chevron-up'}[job.isCollapsedJob]" aria-hidden="true"/>
+										</button>
+									</div>
+								</td>
+							</tr>								
+							<tr ng-repeat-end="true">
+								<td colspan="7" class="hiddenRow collapse" id="collapseTD{{jobIndex}}">
+									<div class="panel panel-default accordian-body collapse" id="collapseJobPanel{{jobIndex}}">
+										<div class="panel-heading clearfix">
+											<div class="col-md-3 col-sm-4 col-xs-5">
+												<h4>Users to skip ({{job.users_to_skip.length}})</h4>
+											</div>
+											<div class="col-md-1 pull-right" style="margin: 6; padding: 0; width: auto;">
+												<div class="btn-group-btn">
+													<button type="button"
+															class="btn"
+															ng-class="{true:'btn', false:'btn active'}[job.isCollapsedUsers]"
+															ng-init="job.isCollapsedUsers=true"
+															ng-click="collapseClick(jobIndex, 'UsersToSkip')"
+															ng-disabled="!hasListItems(job.users_to_skip)"
+															data-toggle="collapse"
+															data-target="#collapseUserPanel{{jobIndex}}"
+															>
+														<span class="glyphicon" ng-class="{true:'glyphicon glyphicon-chevron-down', false:'glyphicon glyphicon-chevron-up'}[job.isCollapsedUsers]" aria-hidden="true"/>
+													</button>
+												</div>
+											</div>
+											<div class="col-md-1 pull-right" style="margin: 6; padding: 0; width: auto;">
+												<div class="btn-group">
+													<button type="submit" class="btn btn-primary" ng-show="!job.isCollapsedUsers">
+														<span class="glyphicon glyphicon-plus" aria-hidden="true"/>
+													</button>
+												</div>
+											</div>
+										</div>
+										<div class="hiddenRow panel-body collapse" id="collapseUserPanel{{jobIndex}}">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>Username</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="user in job.users_to_skip" ng-init="userIndex = $index">
+														<td>{{user.user_to_skip}}</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="panel-heading clearfix">
+											<div class="col-md-4 col-sm-5 col-xs-6">
+												<h4>Affected Companies ({{job.affected_companies.length}})</h4>
+											</div>
+											<div class="col-md-1 pull-right" style="margin: 6; padding: 0; width: auto;">
+												<div class="btn-group-btn">
+													<button type="button"
+															class="btn"
+															ng-class="{true:'btn', false:'btn active'}[job.isCollapsedCompanies]"
+															ng-init="job.isCollapsedCompanies=true"
+															ng-click="collapseClick(jobIndex, 'AffectedCompanies')"
+															ng-disabled="!hasListItems(job.affected_companies)"
+															data-toggle="collapse"
+															data-target="#collapseCompanyPanel{{jobIndex}}"
+															>
+														<span class="glyphicon" ng-class="{true:'glyphicon glyphicon-chevron-down', false:'glyphicon glyphicon-chevron-up'}[job.isCollapsedCompanies]" aria-hidden="true"/>
+													</button>
+												</div>
+											</div>
+											<div class="col-md-1 pull-right" style="margin: 6; padding: 0; width: auto;">
+												<div class="btn-group">
+													<button type="submit" class="btn btn-primary" ng-show="!job.isCollapsedCompanies">
+														<span class="glyphicon glyphicon-plus" aria-hidden="true"/>
+													</button>
+												</div>
+											</div>
+										</div>
+										<div class="hiddenRow panel-body collapse" id="collapseCompanyPanel{{jobIndex}}">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>Company name</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="company in job.affected_companies" ng-init="companyIndex = $index">
+														<td>
+															{{company.affected_company}}
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-animate.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-touch.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script>
+		var $j = jQuery.noConflict();
+		$j('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />');
+	</script>
+</j:jelly>]]></html>
+        <name>license_cleanup</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-06-01 10:42:30</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>149ba8340fbf560087cb06bce1050e7a</sys_id>
+        <sys_mod_count>531</sys_mod_count>
+        <sys_name>license_cleanup</sys_name>
+        <sys_package display_value="License Cleanup" source="x_10980_license_cl">7aa5a3c60fa7d20087cb06bce1050eca</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="License Cleanup">7aa5a3c60fa7d20087cb06bce1050eca</sys_scope>
+        <sys_update_name>sys_ui_page_149ba8340fbf560087cb06bce1050e7a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-06-16 13:25:15</sys_updated_on>
+    </sys_ui_page>
+</record_update>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Cleanup job run results" max_length="40" name="x_10980_license_cl_cleanup_job_run_results" type="collection">
+        <element choice="3" default="unique_user" label="Result type" mandatory="true" max_length="40" name="result_type" type="choice">
+            <choice>
+                <element label="Unique user" sequence="0" value="unique_user"/>
+                <element label="User group" sequence="1" value="user_group"/>
+                <element label="User on the edge" sequence="2" value="user_on_the_edge"/>
+                <element label="User role" sequence="3" value="user_role"/>
+            </choice>
+        </element>
+        <element label="User" mandatory="true" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <element label="User group" max_length="32" name="user_group" reference="sys_user_grmember" type="reference"/>
+        <element label="User last login time" max_length="40" name="user_last_login_time" read_only="true" type="glide_date_time"/>
+        <element label="User role" max_length="32" name="user_role" reference="sys_user_has_role" type="reference"/>
+        <index name="index">
+            <element name="user_role"/>
+        </index>
+        <index name="index2">
+            <element name="user_group"/>
+        </index>
+        <index name="index3">
+            <element name="user"/>
+        </index>
+    </element>
+</database>
